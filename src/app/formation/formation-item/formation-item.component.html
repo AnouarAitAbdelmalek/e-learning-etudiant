@@ -1,0 +1,126 @@
+<br>
+<mat-card class="mat-elevation-z0">
+      <mat-card-header>
+          
+          <div>
+              <img style="height: 250px;" src="{{formation.image}}">
+          </div>
+          <div>
+              <p><b>Titre : </b> {{formation.titre}}</p>
+              <p><b>Date début : </b> {{formation.dateDebut | date: 'dd-MM-yyyy' }}</p>
+              <p><b>Date fin : </b> {{formation.dateFin | date: 'dd-MM-yyyy' }}</p>
+              <p><b>Nombre participants : </b> {{formation.etudiants ? formation.etudiants.length : 0}}</p>
+              <p><b>Prix : </b> {{formation.prix}} DH</p>
+              
+          </div>
+
+
+          <div style="display: flex; justify-content: flex-end; min-width: 30%;"  *ngIf="!possede">
+            <button
+             mat-raised-button 
+             type="button" 
+             color="warn" 
+             style="width: 250px; height: 75px; font-size: 1.5em;"
+             (click)="acheterFormation(formation.id)">
+                        <mat-icon>shopping_cart</mat-icon> Acheter
+                      </button>
+          </div>
+
+          <br>
+              
+            
+                <mat-card class="seance-container">
+                  <b>Description: </b>
+                  <div id="description">
+                    <p>{{formation.description}}</p>
+                </div>
+                </mat-card>
+
+                
+           
+          
+      </mat-card-header> 
+      
+
+      <br>
+      <br>
+      
+
+      <mat-card-content >
+        
+          
+
+          <mat-expansion-panel hideToggle>
+            <mat-expansion-panel-header>
+                <div><h1><mat-icon>list</mat-icon> Séances</h1></div>
+              </mat-expansion-panel-header>
+              <br>
+              <div id="seances">
+            
+                <mat-card class="seance-container" *ngFor="let seance of seances; let i=index">
+                  <div style="display: flex;">
+                    <span><b>Séance {{i+1}}:</b></span>                    
+                  </div>
+                  
+                  
+                  <mat-card-content class="card-seance">
+                    <div><b>Titre : </b> {{seance.titre}}</div>
+                    <div><b>Créneau horaire : </b> {{seance.creneau}}</div>
+                    <span class="example-spacer"></span>
+                      <button mat-raised-button type="button" *ngIf="possede"
+                      (click)="goToSeance(seance.id)" >
+                        <mat-icon>visibility</mat-icon> Voir contenu
+                      </button>
+                                       
+
+                  </mat-card-content>
+                </mat-card>
+   
+              </div>
+          </mat-expansion-panel>
+
+          <div *ngIf="possede">
+            <br>
+          
+          <br>
+
+          <mat-expansion-panel hideToggle [disabled]="true" [expanded]="false" class="evaluation" (click)="goToEvaluation(formation.id)">
+            <mat-expansion-panel-header>
+                <div><h1><mat-icon>quiz</mat-icon> Evaluation </h1></div>
+              </mat-expansion-panel-header>
+          </mat-expansion-panel>
+          </div>
+                    
+      
+        </mat-card-content>
+
+        <br>
+
+      
+        <mat-card-header>
+          
+          <div style="width: 100%; margin-top: 25px;">
+            <p style=" font-size: 1.2em; text-align: center;"><mat-icon>person</mat-icon> Intervenant </p>
+            <br>
+          </div>
+          <div style="padding: 10px;">
+              <img style="height: 250px;" src="{{intervenant.image}}">
+          </div>
+          
+          <div>
+            
+              <p><b>Nom : </b> {{intervenant.nom}}</p>
+              <p><b>Prénom : </b> {{intervenant.prenom}}</p>
+              <p><b>Email : </b> {{intervenant.email}}</p>
+              <p><b>Téléphone : </b> {{intervenant.telephone}}</p>
+              <p><b>Nombre de formations : </b> {{intervenant.formations ? intervenant.formations.length : 0}}</p>
+              
+          </div>          
+           
+          
+      </mat-card-header>
+
+  </mat-card>
+
+
+

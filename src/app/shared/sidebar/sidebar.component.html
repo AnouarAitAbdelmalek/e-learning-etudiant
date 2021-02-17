@@ -1,0 +1,81 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    <mat-toolbar id="logo" >
+      <a mat-list-item routerLink="">
+        <img src="../../../assets/images/logo/logo-etudiant.png" />
+        E-Learning
+      </a>
+    </mat-toolbar>
+    <mat-nav-list>
+
+      <mat-expansion-panel class="menu-panel" hideToggle [disabled]="true" [expanded]="false" routerLink="acceuil">
+        <mat-expansion-panel-header>
+          <a mat-list-item disabled>
+            <img src="../../../assets/images/home.png" /> Acceuil
+          </a>
+        </mat-expansion-panel-header>
+            
+      </mat-expansion-panel>
+
+
+      <mat-expansion-panel class="menu-panel" hideToggle [disabled]="true" [expanded]="false" routerLink="formationList">
+        <mat-expansion-panel-header>
+          <a mat-list-item disabled>
+            <img src="../../../assets/images/online-course.png" /> Toutes les formations
+          </a>
+        </mat-expansion-panel-header>
+            
+      </mat-expansion-panel>
+
+      <mat-expansion-panel class="menu-panel" hideToggle [disabled]="true" [expanded]="false" routerLink="categorieList">
+        <mat-expansion-panel-header>
+          <a mat-list-item disabled>
+            <img src="../../../assets/images/maintenance.png" /> Catégories
+          </a>
+        </mat-expansion-panel-header>
+            
+      </mat-expansion-panel>
+    
+    <mat-expansion-panel class="menu-panel" hideToggle [disabled]="true" [expanded]="false" (click)="goToEtudiantFormations()">
+      <mat-expansion-panel-header>
+        <a mat-list-item disabled>
+          <img src="../../../assets/images/formation.png" /> Mes formations
+        </a>
+      </mat-expansion-panel-header>
+          
+    </mat-expansion-panel>
+    
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar id="navbar">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>{{title}}</span>
+      <span class="example-spacer"></span>
+      <a mat-button [matMenuTriggerFor]="menu">
+        <mat-icon>person_outline</mat-icon>
+      </a>
+      <mat-menu #menu="matMenu">
+        <a mat-menu-item routerLink="logout">
+          <mat-icon>exit_to_app</mat-icon> Se déconnecter
+        </a>
+      </mat-menu>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+    <!-- <footer id="page-footer">
+      <p>Copyright &copy; 2021 ENSA Marrakech Projet de semestre GI-3</p>
+    </footer> -->
+  </mat-sidenav-content>
+  
+</mat-sidenav-container>
+

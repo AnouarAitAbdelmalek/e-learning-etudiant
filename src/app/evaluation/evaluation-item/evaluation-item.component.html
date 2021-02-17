@@ -1,0 +1,51 @@
+<br>
+<form class="questions" [formGroup]="formgroup" (ngSubmit)="onSubmit()">
+            
+    <mat-card class="question-container" *ngFor="let question of questions; let j=index;" formArrayName="reponses">
+      <div style="display: flex;" >
+        <span><b style="color: #2c0413;">Question {{question.numeroDeQuestion}} :</b></span>
+        <span class="example-spacer"></span>
+        
+      </div>
+      
+      <mat-card-content class="card-question">
+        <br>
+        <div style="font-size: 1.2em;"><b>Enoncé : </b> {{question.enonce}}</div>
+        <br>
+        <div style="font-size: 1.2em;"><b>Choix : </b>
+          <fieldset id={{question.numeroDeQuestion}} >
+            <div style="padding-left: 25px;" *ngFor="let choix of question.choix; let i=index " >
+              <br>
+              <input (change)="onItemChange($event.target.value,question)" type="radio" value={{choix.valeurChoix}} name={{question.numeroDeQuestion}} > {{choix.valeurChoix}}
+              
+            </div>
+          </fieldset>
+        </div>                   
+
+      </mat-card-content>
+      
+    </mat-card>
+
+    <br>
+      <div style="display: flex; justify-content: center;">
+        <div style="margin: 5px;">
+            <button mat-raised-button
+            color="primary" 
+            style="font-size: 1.2em; margin-bottom: 25px;
+            " type="submit"
+            [disabled]="!formgroup.valid"
+            >
+              <mat-icon>add</mat-icon> Soumettre les réponses
+            </button>
+          </div>
+          
+        </div>
+
+
+    
+
+  </form>
+
+
+
+

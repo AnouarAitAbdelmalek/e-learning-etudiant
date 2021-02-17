@@ -1,0 +1,21 @@
+<div id="header">
+      
+  <div id="formationList">
+    <button mat-button color="warn" (click)="goToAllFormations()" >Toutes les formations</button>
+
+  </div>
+  </div>
+  <div id="card-container">
+    
+      <mat-card *ngFor="let CATEGORIE of obs | async " class="categorie">
+          <p>{{CATEGORIE.designation}}</p>
+          <span class="example-spacer"></span>
+          <div class="button-container">
+            <button mat-mini-fab class="bg-danger" (click)="goToFormations(CATEGORIE.id)">
+                <mat-icon>list</mat-icon>
+            </button>
+          </div>
+      </mat-card>
+      
+</div>
+  

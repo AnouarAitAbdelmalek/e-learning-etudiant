@@ -1,0 +1,63 @@
+<form [formGroup]="achatForm" (ngSubmit)="onSubmit()">
+    <mat-card class="mat-elevation-z0">
+        <mat-card-header>
+           
+            <div>
+                <img style="height: 250px;" src="{{formation.image}}">
+            </div>
+            <div>
+                <p><b>Titre : </b> {{formation.titre}}</p>
+                <p><b>Date début : </b> {{formation.dateDebut | date: 'dd-MM-yyyy' }}</p>
+                <p><b>Date fin : </b> {{formation.dateFin | date: 'dd-MM-yyyy' }}</p>
+                <p><b>Nombre participants : </b> {{formation.etudiants ? formation.etudiants.length : 0}}</p>
+                <p><b>Prix : </b> {{formation.prix}} DH</p>
+                
+            </div>
+        </mat-card-header>
+
+        <br>
+        <br>
+        <br>
+        <br>
+        
+    
+        <mat-card-content>
+          
+            <mat-form-field class="form-fields"  appearance="fill">
+              <mat-label>Numéro de carte</mat-label>
+              <input required matInput type="number" formControlName="cardNum" maxlength="16" placeholder="Numéro de carte">
+            </mat-form-field>
+
+            
+            <mat-form-field class="form-fields"  appearance="fill">
+              <mat-label>Code de sécurité</mat-label>
+              <input required matInput type="number" formControlName="codeSecurite" maxlength="3" placeholder="Code de sécurité">
+            </mat-form-field>
+
+            <mat-form-field class="form-fields"  appearance="fill">
+                <mat-label>Nom propriétaire</mat-label>
+                <input required matInput formControlName="proprietaire"  placeholder="Nom propriétaire">
+              </mat-form-field>
+              
+
+              <mat-form-field appearance="fill" class="form-fields">
+                <mat-label>Date d'expiration</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="dateExporation" required>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+        
+          </mat-card-content>
+    
+      <mat-card-footer>
+        
+        <button mat-raised-button color="primary" type="submit" [disabled]="!achatForm.valid">
+          <mat-icon>check</mat-icon> Valider
+        </button>
+        <button mat-raised-button type="reset" color="warn">
+          <mat-icon>refresh</mat-icon> Rénitialiser
+        </button>
+      </mat-card-footer>
+    </mat-card>
+    </form>
+

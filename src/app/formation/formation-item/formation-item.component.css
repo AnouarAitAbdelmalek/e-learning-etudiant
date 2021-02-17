@@ -1,0 +1,124 @@
+mat-card-header {
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 1.5em;
+  background-color: #2c0413;
+  color: #ffffff;
+  border-radius: 5px;
+}
+
+#description {
+  margin: 25px auto;
+  width: 90%;
+}
+
+mat-card-header div {
+  margin-left: 10px;
+}
+
+mat-form-field {
+  min-width: 300px;
+  width: 400px;
+  height: 110px;
+  font-size: 1.2em;
+}
+
+#seances {
+  background-color: #2c0413;
+  font-size: 1.2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.seance-container {
+  width: 90%;
+  margin: 10px auto;
+  font-size: 1.2em;
+}
+
+.card-seance {
+  display: flex;
+  justify-content: space-around;
+  font-size: 1em;
+  flex-wrap: wrap;
+}
+.card-seance div {
+  padding: 10px;
+  min-width: 300px;
+}
+
+.card-seance button {
+  padding: 10px;
+  font-size: 1em;
+  background-color: #2c0413;
+  color: #ffffff;
+}
+
+button:focus {
+  outline: 0;
+}
+
+footer {
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.new-card-seance {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+#add-btn {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+#add-btn button {
+  width: 200px;
+  font-size: 1.2em;
+  padding: auto 10px;
+}
+
+.example-spacer {
+  flex: 0.5 1 auto;
+}
+
+img {
+  width: 300px;
+  height: auto;
+}
+
+mat-expansion-panel {
+  background-color: #2c0413;
+}
+
+mat-expansion-panel-header {
+  color: #ffffff;
+  height: 150px;
+}
+mat-expansion-panel-header div {
+  display: flex;
+  padding-top: 10px;
+  justify-content: center;
+  width: 100%;
+}
+
+h1 mat-icon {
+  font-size: 1.5em;
+  margin-right: 10px;
+  height: 5px;
+}
+
+.evaluation mat-expansion-panel-header div {
+  color: #ffffff;
+  font-size: 1.5em;
+  background-color: inherit;
+  user-select: none;
+}
