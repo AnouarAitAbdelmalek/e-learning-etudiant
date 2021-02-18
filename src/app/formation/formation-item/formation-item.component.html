@@ -79,7 +79,7 @@
               </div>
           </mat-expansion-panel>
 
-          <div *ngIf="possede">
+          <div *ngIf="possede && evaluationExiste" >
             <br>
           
           <br>
@@ -113,7 +113,7 @@
               <p><b>Prénom : </b> {{intervenant.prenom}}</p>
               <p><b>Email : </b> {{intervenant.email}}</p>
               <p><b>Téléphone : </b> {{intervenant.telephone}}</p>
-              <p><b>Nombre de formations : </b> {{intervenant.formations ? intervenant.formations.length : 0}}</p>
+              <!-- <p><b>Nombre de formations : </b> {{intervenant.formations ? intervenant.formations.length : 0}}</p> -->
               
           </div>          
            

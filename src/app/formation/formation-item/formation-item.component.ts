@@ -6,6 +6,7 @@ import { FormationService } from '../service/formation.service';
 import { Seance } from 'src/app/seance/model/seance';
 import { MatDialog } from '@angular/material/dialog';
 import { IntervenantService } from 'src/app/intervenant/service/intervenant.service';
+import { EtudiantService } from 'src/app/etudiant/service/etudiant.service';
 
 @Component({
   selector: 'app-formation-item',
@@ -22,28 +23,36 @@ export class FormationItemComponent implements OnInit {
   date: Date = new Date();
 
   possede: boolean = true;
+  evaluationExiste:boolean=true;
 
   constructor(private router: Router,
     private activatedRoute: ActivatedRoute, 
     public dialog: MatDialog,
     private formationService: FormationService,
-    private intervenantService : IntervenantService
+    private intervenantService : IntervenantService,
+    private etudiantService:EtudiantService
   ) {}
 
 
   ngOnInit(): void {
     this.formationService.find(this.activatedRoute.snapshot.params['id']).subscribe(
       (data) => {
-        this.formation=data;
-        this.seances=this.formation.seances;
-        this.intervenant = this.formation.intervenant;
+        
+        this.formation=data[0];
+        if(this.formation.evaluation===null) this.evaluationExiste=false;
+        this.etudiantService.estInscrit(data[0]).subscribe((result)=>
+        {
+          this.possede=result.response;
+        })
+        this.intervenant=this.formation.intervenant;
+        this.formationService.findSeances(this.activatedRoute.snapshot.params['id']).subscribe(
+          result=> {
+            this.seances=result;
+          }
+        )
       }
     );
-    this.intervenantService.find(this.formation.intervenant.id).subscribe(
-      (data) => {
-        //this.intervenant = data
-      }
-    )
+  
   }
 
 

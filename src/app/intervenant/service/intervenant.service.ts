@@ -11,7 +11,7 @@ export class IntervenantService {
   private intervenantUrl: string;
 
   constructor(private http: HttpClient) {
-    this.intervenantUrl = 'http://localhost:5001/intervenants';
+    this.intervenantUrl = 'http://localhost:8081/api/intervenant';
   }
   public findAll(): Observable<Intervenant[]> {
     /*let username = 'intervenant';
@@ -20,11 +20,11 @@ export class IntervenantService {
       Authorization: 'Basic ' + btoa(username + ':' + password),
     });*/
 
-    return this.http.get<Intervenant[]>(this.intervenantUrl);
+    return this.http.get<Intervenant[]>(this.intervenantUrl+"s");
   }
 
   public find(id: number): Observable<Intervenant> {
-    return this.http.get<Intervenant>(`${this.intervenantUrl}/${id}`);
+    return this.http.get<Intervenant>(`${this.intervenantUrl}s/${id}`);
   }
 
   public save(intervenant: Intervenant) {
@@ -34,7 +34,7 @@ export class IntervenantService {
       Authorization: 'Basic ' + btoa(username + ':' + password),
     });*/
 
-    return this.http.post<Intervenant>(this.intervenantUrl, intervenant);
+    return this.http.post<Intervenant>(this.intervenantUrl+"s", intervenant);
   }
   delete(id: number): Observable<any> {
     /*let username = 'intervenant';

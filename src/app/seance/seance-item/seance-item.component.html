@@ -48,7 +48,7 @@
     <p style="font-size: 1.2em;"><b>Commentaires: </b></p>
     <mat-card-content class="card-comments">
       <mat-card *ngFor="let commentaire of obsCommentaire | async;" style="display: flex;">
-        <p><b>{{commentaire.utilisateur.nom}} {{commentaire.utilisateur.prenom}}</b></p>
+        <p><b>{{commentaire.proprietaire.nom}} {{commentaire.proprietaire.prenom}}</b></p>
         <mat-card-content>
           <p> {{commentaire.contenu}} </p>
           <span class="example-spacer"></span>

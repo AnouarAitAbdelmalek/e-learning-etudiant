@@ -2,6 +2,7 @@ import { Etudiant } from 'src/app/etudiant/model/etudiant';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Formation } from 'src/app/formation/model/formation';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,17 @@ export class EtudiantService {
 
   public save(etudiant: Etudiant) {
 
-    return this.http.post<Etudiant>(this.etudiantUrl+"s", etudiant);
+    return this.http.post<Etudiant>("http://localhost:8081/api/inscriptionEtudiant", etudiant);
+  }
+
+  public estInscrit(formation: Formation) {
+
+    return this.http.post<any>("http://localhost:8081/api/etudiant/estInscrit", formation);
+  }
+
+  public inscrireDansFormation(formation: Formation) {
+
+    return this.http.post<Etudiant>("http://localhost:8081/api/etudiant/inscriptionFormation", formation);
   }
   public saveImage(id:number,image:File) {
     /*let username = 'admin';
@@ -36,6 +47,10 @@ export class EtudiantService {
       responseType: 'json'
     });
   }
+  public findFormations(id: Number): Observable<Formation[]> {
+    return this.http.get<Formation[]>(`${this.etudiantUrl}/formations`);
+  }
+
 
   public find(id: number): Observable<Etudiant> {
     return this.http.get<Etudiant>(`${this.etudiantUrl}s?id=${id}`);

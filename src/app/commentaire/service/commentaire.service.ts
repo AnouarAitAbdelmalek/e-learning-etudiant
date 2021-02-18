@@ -14,18 +14,18 @@ export class CommentaireService {
   constructor(
     private http: HttpClient
     ) {
-    this.url = 'http://localhost:5001/commentaires';
+    this.url = 'http://localhost:8081/api/commentaire';
   }
 
   public find(id: number): Observable<Commentaire> {
-    return this.http.get<Commentaire>(`${this.url}/${id}`);
+    return this.http.get<Commentaire>(`${this.url}s/${id}`);
   }
 
   public findAll(): Observable<Commentaire[]> {
-    return this.http.get<Commentaire[]>(this.url);
+    return this.http.get<Commentaire[]>(this.url+"s");
   }
 
   public save(commentaire: Commentaire) {
-    return this.http.post<Commentaire>(this.url, commentaire);
+    return this.http.post<Commentaire>(this.url+"s", commentaire);
   }
 }

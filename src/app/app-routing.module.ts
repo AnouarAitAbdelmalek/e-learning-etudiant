@@ -10,6 +10,7 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { FormationListComponent } from './formation/formation-list/formation-list.component';
 import { CategorieListComponent } from './categorie/categorie-list/categorie-list.component';
 import { LoginComponent } from './authentification/login/login.component';
+import { AuthGuardService } from './authentification/service/auth-guard.service';
 
 const routes: Routes = [
   {
@@ -23,6 +24,7 @@ const routes: Routes = [
   {
     path: '',
     component: SidebarComponent,
+    canActivate:[AuthGuardService],
     children: [
       {
         path: '',

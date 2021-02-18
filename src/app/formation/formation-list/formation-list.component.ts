@@ -18,7 +18,7 @@ import { Formation } from '../model/formation';
 export class FormationListComponent implements OnInit {
 
   FORMATIONS: Formation[] = [];
-  id: number = this.activatedRoute.snapshot.params['id'];
+  id: number;
 
 
 
@@ -44,9 +44,9 @@ export class FormationListComponent implements OnInit {
     if(this.activatedRoute.snapshot.params['idCat'])
     {
       this.id = this.activatedRoute.snapshot.params['idCat'];
-      this.catService.find(this.id).subscribe(
+      this.catService.findFormations(this.id).subscribe(
         (data) => {
-          this.FORMATIONS = data.formations;
+          this.FORMATIONS = data;
           this.dataSource.data= this.FORMATIONS;
         },
         (error) => console.log(error)
@@ -55,9 +55,9 @@ export class FormationListComponent implements OnInit {
     else if(this.activatedRoute.snapshot.params['idEtud'])
     {
       this.id = this.activatedRoute.snapshot.params['idEtud'];
-      this.etudiantService.find(this.id).subscribe(
+      this.etudiantService.findFormations(this.id).subscribe(
         (data) => {
-          this.FORMATIONS = data.formations;
+          this.FORMATIONS = data;
           this.dataSource.data= this.FORMATIONS;
         },
         (error) => console.log(error)

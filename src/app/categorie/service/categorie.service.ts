@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Formation } from 'src/app/formation/model/formation';
 import { Categorie } from '../model/categorie';
 
 @Injectable({
@@ -11,7 +12,7 @@ export class CategorieService {
   private categorieUrl: string;
 
   constructor(private http: HttpClient) {
-    this.categorieUrl = 'http://localhost:5001/categories';
+    this.categorieUrl = 'http://localhost:8081/api/categorie';
   }
   public findAll(): Observable<Categorie[]> {
     /*let username = 'categorie';
@@ -20,11 +21,11 @@ export class CategorieService {
       Authorization: 'Basic ' + btoa(username + ':' + password),
     });*/
 
-    return this.http.get<Categorie[]>(this.categorieUrl);
+    return this.http.get<Categorie[]>(this.categorieUrl+"s");
   }
 
-  public find(id: number): Observable<Categorie> {
-    return this.http.get<Categorie>(`${this.categorieUrl}/${id}`);
+  public findFormations(id: number): Observable<Formation[]> {
+    return this.http.get<Formation[]>(`${this.categorieUrl}s/${id}/formations`);
   }
   
 

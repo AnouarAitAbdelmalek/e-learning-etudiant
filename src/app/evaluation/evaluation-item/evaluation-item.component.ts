@@ -45,7 +45,7 @@ export class EvaluationItemComponent implements OnInit {
 
     this.formationService.find(id).subscribe(
       (data) => {
-        this.formation = data;
+        this.formation = data[0];
         this.evaluation = this.formation.evaluation;
         this.questions = this.evaluation.questions;
 
@@ -87,7 +87,10 @@ export class EvaluationItemComponent implements OnInit {
     let passageEvaluation = {
       reponses : this.reps
     }
-    console.log(passageEvaluation)
+    this.formationService.passageEvaluation(this.formation.id,passageEvaluation).subscribe((result)=>
+    {
+      console.log("ça marche.")
+    })
 
   }
 

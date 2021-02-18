@@ -3,6 +3,7 @@ import { FormationService } from 'src/app/formation/service/formation.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { EtudiantService } from 'src/app/etudiant/service/etudiant.service';
 
 @Component({
   selector: 'app-achat',
@@ -42,14 +43,17 @@ export class AchatComponent implements OnInit {
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private formationService: FormationService
+    private formationService: FormationService,
+    private etudiantService: EtudiantService
   ) { }
 
   ngOnInit(): void {
     this.id= this.activatedRoute.snapshot.params['id'];
     this.formationService.find(this.id).subscribe(
       (data) => {
-        this.formation= data;
+        this.formation= data[0];
+
+
       }
     )
   }
@@ -57,7 +61,13 @@ export class AchatComponent implements OnInit {
 
 
   onSubmit() {
-    this.router.navigate(['formation/'+this.id]);
+
+    this.etudiantService.inscrireDansFormation(this.formation).subscribe((result)=>
+    {
+      this.router.navigate(['etudiant/1/formations']);
+    }
+    )
+    
   }
 
   

@@ -15,6 +15,8 @@ import { CommentaireModule } from './commentaire/commentaire.module';
 import { EvaluationModule } from './evaluation/evaluation.module';
 import { UtilisateurModule } from './utilisateur/utilisateur.module';
 import { AuthentificationModule } from './authentification/authentification.module';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { BasicAuthHttpInterceptorService } from './authentification/service/basic-auth-http-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,12 @@ import { AuthentificationModule } from './authentification/authentification.modu
     UtilisateurModule,
     AuthentificationModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: BasicAuthHttpInterceptorService,
+    multi: true,
+  }
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
