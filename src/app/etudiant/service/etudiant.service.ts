@@ -55,4 +55,9 @@ export class EtudiantService {
   public find(id: number): Observable<Etudiant> {
     return this.http.get<Etudiant>(`${this.etudiantUrl}s?id=${id}`);
   }
+
+  public dejaPasse(id:number): Observable<any> {
+
+    return this.http.get<any>("http://localhost:8081/api/dejaPasse/"+id);
+  }
 }

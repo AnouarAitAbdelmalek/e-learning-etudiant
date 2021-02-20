@@ -24,6 +24,7 @@ export class FormationItemComponent implements OnInit {
 
   possede: boolean = true;
   evaluationExiste:boolean=true;
+  dejaPasse:boolean=false;
 
   constructor(private router: Router,
     private activatedRoute: ActivatedRoute, 
@@ -40,6 +41,10 @@ export class FormationItemComponent implements OnInit {
         
         this.formation=data[0];
         if(this.formation.evaluation===null) this.evaluationExiste=false;
+        this.etudiantService.dejaPasse(this.formation.id).subscribe((result)=>
+        {
+          this.dejaPasse=result.response;
+        })
         this.etudiantService.estInscrit(data[0]).subscribe((result)=>
         {
           this.possede=result.response;

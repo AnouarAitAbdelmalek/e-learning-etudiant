@@ -68,9 +68,7 @@ export class FormationListComponent implements OnInit {
       this.formationService.findAll().subscribe(
         (data) => {
           this.FORMATIONS = data;
-          this.FORMATIONS.forEach(frmtn => {
-            frmtn.etudiants = [];
-          });
+
           this.dataSource.data= this.FORMATIONS;
         },
         (error) => console.log(error)

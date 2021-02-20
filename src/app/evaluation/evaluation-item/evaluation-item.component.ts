@@ -21,7 +21,8 @@ export class EvaluationItemComponent implements OnInit {
     public dialog: MatDialog,
     private evaluationService: EvaluationService,
     private formationService: FormationService,
-    private formBuilder: FormBuilder) {
+    private formBuilder: FormBuilder,
+    route:Router) {
      }
      formation: Formation = new Formation();
     evaluation: Evaluation = new Evaluation();
@@ -74,7 +75,8 @@ export class EvaluationItemComponent implements OnInit {
     this.getControls()[question.numeroDeQuestion-1].setValue({
       numeroDeQuestion : question.numeroDeQuestion,
       valeur : value
-    })
+    });
+    console.log(this.getControls()[question.numeroDeQuestion-1])
   }
  
 
@@ -82,14 +84,16 @@ export class EvaluationItemComponent implements OnInit {
 
     this.getControls().forEach(alo => {
       this.reps.push(alo.value);
+
     });
 
     let passageEvaluation = {
       reponses : this.reps
     }
+    console.log(passageEvaluation);
     this.formationService.passageEvaluation(this.formation.id,passageEvaluation).subscribe((result)=>
     {
-      console.log("ça marche.")
+      this.router.navigate(['etudiant/1/formations']);
     })
 
   }

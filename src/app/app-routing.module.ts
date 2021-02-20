@@ -28,7 +28,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'acceuil',
+        redirectTo: 'formationList',
         pathMatch: 'full',
       },
       {
